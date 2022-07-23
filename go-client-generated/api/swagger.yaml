@@ -1,0 +1,516 @@
+openapi: 3.0.1
+info:
+  title: API Car plate - API Plaque immatriculation
+  description: "Web Service which allows you to query the official database in real\
+    \ time by simply entering a license plate or a VIN. You allow your ecosystem to\
+    \ identify in one click the official data of a vehicle among the 80M license plates\
+    \ in France, Spain, Italy and Portugal."
+  termsOfService: https://auto-ways.net/
+  contact:
+    email: contact@auto-ways.net
+  version: 1.0.0-oas3
+externalDocs:
+  description: External API Documentation
+  url: https://auto-ways.net/api-doc/
+servers:
+- url: https://app.auto-ways.net/api
+- url: http://app.auto-ways.net/api
+tags:
+- name: Auto Now
+  description: Request your demo for free
+  externalDocs:
+    description: here
+    url: https://auto-ways.net/demo
+paths:
+  /v1/vin/:
+    get:
+      tags:
+      - car-info
+      summary: Find car by VIN
+      description: Return vehicle data from license plate
+      operationId: getCarByVIN
+      parameters:
+      - name: token
+        in: query
+        description: "Your token, use your real token or request a free token for\
+          \ fee here https://auto-ways.net/demo "
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 4a486e221ea6d4a888671242b5fe0fed
+      - name: vin
+        in: query
+        description: ' Your VIN (Vehicle Identification Number)'
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: VF1R9800962986572
+      - name: output_lang
+        in: query
+        description: "Define the API output language (fr,en)"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: fr
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              example:
+                error: false
+                data:
+                  AWN_immat: fh034dd
+                  AWN_VIN: VF1R9800962986572
+                  AWN_marque: RENAULT
+                  AWN_modele: CLIO IV
+                  AWN_modele_etude: CLIO IV
+                  AWN_version: IV DCI
+                  AWN_type_mine: M10RENVP603P733
+                  AWN_k_type: "57281"
+                  AWN_couleur: GRIS
+                  AWN_Hauteur: "145"
+                  AWN_largeur: "173"
+                  AWN_longueur: "406"
+                  AWN_marque_carrosserie: RENAULT
+                  AWN_poids_vide: "1160"
+                  AWN_puissance_chevaux: "90"
+                  AWN_puissance_fiscale: "5"
+                  AWN_carrosserie: BERLINE
+                  AWN_carrosserie_carte_grise: CI
+                  AWN_genre: VP
+                  AWN_genre_carte_grise: VP
+                  AWN_energie: GAZOLE
+                  AWN_energie_code: 1
+                  AWN_emission_co_2: "104"
+                  AWN_date_mise_en_circulation: 20/06/2019
+                  AWN_date_30: 20/06/2019
+                  AWN_numero_de_serie: "62986572"
+                  AWN_nbr_cylindres: "4"
+                  AWN_nbr_cylindre_energie: "1461"
+                  AWN_genre_code: 1
+                  AWN_collection: non
+                  AWN_puissance_KW: "66"
+                  AWN_code_moteur: K9K_638
+                  AWN_nbr_de_places: "5"
+                  AWN_nbr_volume: "2"
+                  AWN_nbr_portes: "5"
+                  AWN_nbr_vitesses: "5"
+                  AWN_type_boite_vites: MECANIQUE
+                  AWN_turbo_Comprressor: TURBO
+                  AWN_depollution: OUI
+                  AWN_empattement: "259"
+                  AWN_consommation_urbaine: "0.0"
+                  AWN_consommation_ex_urbaine: "0.0"
+                  AWN_consommation_mixte: "0.0"
+                  AWN_mode_injection: INJECTION DIRECTE
+                  AWN_poids_total_roulant: "1700"
+                  AWN_prix: "20804"
+                  AWN_propulsion: Traction avant
+                  AWN_libelle: CLIO IV (BH_)
+                  AWN_TID: "40025"
+                  AWN_type_variante_version: R00BD2N45SA06A5000
+                  AWN_marque_id: "1420"
+                  AWN_brand_img_path: /autoways/public/storage/brands/renault.png
+                  AWN_output_lang: fr
+        "301":
+          description: Cross-Origin Resource Sharing (CORS)
+        "401":
+          description: Unauthorized client
+        "404":
+          description: Car not found
+  /v1/fr/:
+    get:
+      tags:
+      - car-info
+      summary: "Find car by plate , country  (FR)"
+      description: Return vehicle data from license plate
+      operationId: getCarByPlate_fr
+      parameters:
+      - name: token
+        in: query
+        description: "Your token, use your real token or request a free token for\
+          \ fee here https://auto-ways.net/demo "
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 4a486e221ea6d4a888671242b5fe0fed
+      - name: plaque
+        in: query
+        description: 'car plate '
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: FH034DD
+      - name: output_lang
+        in: query
+        description: "Define the API output language (fr,en)"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: fr
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              example:
+                error: false
+                data:
+                  AWN_immat: fh034dd
+                  AWN_VIN: VF1R9800962986572
+                  AWN_marque: RENAULT
+                  AWN_modele: CLIO IV
+                  AWN_modele_etude: CLIO IV
+                  AWN_version: IV DCI
+                  AWN_type_mine: M10RENVP603P733
+                  AWN_k_type: "57281"
+                  AWN_couleur: GRIS
+                  AWN_Hauteur: "145"
+                  AWN_largeur: "173"
+                  AWN_longueur: "406"
+                  AWN_marque_carrosserie: RENAULT
+                  AWN_poids_vide: "1160"
+                  AWN_puissance_chevaux: "90"
+                  AWN_puissance_fiscale: "5"
+                  AWN_carrosserie: BERLINE
+                  AWN_carrosserie_carte_grise: CI
+                  AWN_genre: VP
+                  AWN_genre_carte_grise: VP
+                  AWN_energie: GAZOLE
+                  AWN_energie_code: 1
+                  AWN_emission_co_2: "104"
+                  AWN_date_mise_en_circulation: 20/06/2019
+                  AWN_date_30: 20/06/2019
+                  AWN_numero_de_serie: "62986572"
+                  AWN_nbr_cylindres: "4"
+                  AWN_nbr_cylindre_energie: "1461"
+                  AWN_genre_code: 1
+                  AWN_collection: non
+                  AWN_puissance_KW: "66"
+                  AWN_code_moteur: K9K_638
+                  AWN_nbr_de_places: "5"
+                  AWN_nbr_volume: "2"
+                  AWN_nbr_portes: "5"
+                  AWN_nbr_vitesses: "5"
+                  AWN_type_boite_vites: MECANIQUE
+                  AWN_turbo_Comprressor: TURBO
+                  AWN_depollution: OUI
+                  AWN_empattement: "259"
+                  AWN_consommation_urbaine: "0.0"
+                  AWN_consommation_ex_urbaine: "0.0"
+                  AWN_consommation_mixte: "0.0"
+                  AWN_mode_injection: INJECTION DIRECTE
+                  AWN_poids_total_roulant: "1700"
+                  AWN_prix: "20804"
+                  AWN_propulsion: Traction avant
+                  AWN_libelle: CLIO IV (BH_)
+                  AWN_TID: "40025"
+                  AWN_type_variante_version: R00BD2N45SA06A5000
+                  AWN_marque_id: "1420"
+                  AWN_brand_img_path: /autoways/public/storage/brands/renault.png
+                  AWN_output_lang: fr
+        "301":
+          description: Cross-Origin Resource Sharing (CORS)
+        "401":
+          description: Unauthorized client
+        "404":
+          description: Car not found
+  /v1/es/:
+    get:
+      tags:
+      - car-info
+      summary: "Find car by plate  , country  (ES)"
+      description: Return vehicle data from license plate
+      operationId: getCarByPlate_es
+      parameters:
+      - name: token
+        in: query
+        description: "Your token, use your real token or request a free token for\
+          \ fee here https://auto-ways.net/demo "
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 4a486e221ea6d4a888671242b5fe0fed
+      - name: plaque
+        in: query
+        description: 'car plate '
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 1509HJB
+      - name: output_lang
+        in: query
+        description: "Define the API output language (fr,en)"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: fr
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              example:
+                error: false
+                data:
+                  AWN_immat: 1509hjb
+                  AWN_VIN: WDD2040011A679822
+                  AWN_marque: MERCEDES-BENZ
+                  AWN_modele: CLASSE C
+                  AWN_modele_etude: CLASSE
+                  AWN_k_type: "7518"
+                  AWN_couleur: INCONNUE
+                  AWN_marque_carrosserie: MERCEDES-BENZ
+                  AWN_poids_vide: "1515"
+                  AWN_puissance_chevaux: "136"
+                  AWN_puissance_fiscale: "14"
+                  AWN_carrosserie: Inconnue
+                  AWN_genre: VP
+                  AWN_genre_carte_grise: VP
+                  AWN_energie: GAZOLE
+                  AWN_emission_co_2: "135"
+                  AWN_date_mise_en_circulation: 27/01/2012
+                  AWN_numero_de_serie: 1A679822
+                  AWN_nbr_cylindres: "4"
+                  AWN_nbr_cylindre_energie: "2143"
+                  AWN_collection: NON
+                  AWN_puissance_KW: "100"
+                  AWN_nbr_de_places: "5"
+                  AWN_type_boite_vites: INCONNUE
+                  AWN_mode_injection: INJECTION DIRECTE
+                  AWN_propulsion: Propulsion
+                  AWN_libelle: CLASSE C (W204)
+                  AWN_TID: "33025"
+                  AWN_modele_id: "3391"
+                  AWN_marque_id: "1454"
+                  AWN_annee_de_debut_modele: "200911"
+                  AWN_annee_de_fin_modele: "201403"
+                  AWN_brand_img_path: /autoways/public/storage/brands/no_image.png
+                  country: es
+                  AWN_brand_img_full_path: https://app.auto-ways.net/autoways/public/storage/brands/no_image.png
+                  AWN_country: es
+                  AWN_output_lang: fr
+        "301":
+          description: Cross-Origin Resource Sharing (CORS)
+        "401":
+          description: Unauthorized client
+        "404":
+          description: Car not found
+  /v1/it/:
+    get:
+      tags:
+      - car-info
+      summary: "Find car by plate  , country  (IT)"
+      description: Return vehicle data from license plate
+      operationId: getCarByPlate_it
+      parameters:
+      - name: token
+        in: query
+        description: "Your token, use your real token or request a free token for\
+          \ fee here https://auto-ways.net/demo "
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 4a486e221ea6d4a888671242b5fe0fed
+      - name: plaque
+        in: query
+        description: 'car plate '
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: FG995BB
+      - name: output_lang
+        in: query
+        description: "Define the API output language (fr,en)"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: fr
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              example:
+                error: false
+                data:
+                  AWN_immat: fg995bb
+                  AWN_VIN: ZFA31200003781372
+                  AWN_marque: FIAT
+                  AWN_modele: PANDA Van
+                  AWN_modele_etude: PANDA
+                  AWN_version: 1.3 MJT 4x4 2 posti Ber 5p/d/1248cc
+                  AWN_k_type: "118552"
+                  AWN_couleur: INCONNUE
+                  AWN_Hauteur: "1551"
+                  AWN_largeur: "1643"
+                  AWN_longueur: "3653"
+                  AWN_marque_carrosserie: FIAT
+                  AWN_puissance_chevaux: "80"
+                  AWN_puissance_fiscale: "15"
+                  AWN_carrosserie: BERLINE
+                  AWN_genre: VP
+                  AWN_genre_carte_grise: VP
+                  AWN_energie: GAZOLE
+                  AWN_date_mise_en_circulation: 07/11/2016
+                  AWN_numero_de_serie: "03781372"
+                  AWN_nbr_cylindres: "4"
+                  AWN_nbr_cylindre_energie: "1248"
+                  AWN_collection: NON
+                  AWN_puissance_KW: "59"
+                  AWN_code_moteur: 225A2000
+                  AWN_nbr_de_places: "2"
+                  AWN_nbr_soupapes: "4"
+                  AWN_nbr_volume: "4"
+                  AWN_nbr_portes: "5"
+                  AWN_nbr_vitesses: "5"
+                  AWN_type_boite_vites: MECANIQUE
+                  AWN_turbo_Comprressor: S
+                  AWN_depollution: 'DPF + catalizzatore '
+                  AWN_empattement: "2300"
+                  AWN_consommation_urbaine: "4.0"
+                  AWN_consommation_ex_urbaine: "4.0"
+                  AWN_consommation_mixte: "4.0"
+                  AWN_mode_injection: INJECTION DIRECTE
+                  AWN_propulsion: Traction intégrale
+                  AWN_libelle: "PANDA VAN (312_, 519_)"
+                  AWN_TID: "94770"
+                  AWN_modele_id: "3297"
+                  AWN_marque_id: "1260"
+                  AWN_annee_de_debut_modele: "201406"
+                  AWN_annee_de_fin_modele: "999999"
+                  AWN_brand_img_path: /autoways/public/storage/brands/fiat.png
+                  country: it
+                  AWN_brand_img_full_path: https://app.auto-ways.net/autoways/public/storage/brands/fiat.png
+                  AWN_country: it
+                  AWN_output_lang: fr
+        "301":
+          description: Cross-Origin Resource Sharing (CORS)
+        "401":
+          description: Unauthorized client
+        "404":
+          description: Car not found
+  /v1/pt/:
+    get:
+      tags:
+      - car-info
+      summary: "Find car by plate  , country  (PT)"
+      description: Return vehicle data from license plate
+      operationId: getCarByPlate_pt
+      parameters:
+      - name: token
+        in: query
+        description: "Your token, use your real token or request a free token for\
+          \ fee here https://auto-ways.net/demo "
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 4a486e221ea6d4a888671242b5fe0fed
+      - name: plaque
+        in: query
+        description: 'car plate '
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: 89XL64
+      - name: output_lang
+        in: query
+        description: "Define the API output language (fr,en)"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          default: fr
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              example:
+                error: false
+                data:
+                  AWN_immat: 89xl64
+                  AWN_VIN: SJNFFAJ11U2588958
+                  AWN_marque: NISSAN
+                  AWN_modele: QASHQAI II SUV
+                  AWN_modele_etude: QASHQAI
+                  AWN_k_type: "133682"
+                  AWN_couleur: CASTAN
+                  AWN_marque_carrosserie: NISSAN
+                  AWN_puissance_chevaux: "140"
+                  AWN_puissance_fiscale: "0"
+                  AWN_carrosserie: Inconnue
+                  AWN_genre: VP
+                  AWN_genre_carte_grise: VP
+                  AWN_energie: ESSENCE
+                  AWN_emission_co_2: "0"
+                  AWN_date_mise_en_circulation: 26/04/2019
+                  AWN_date_30: 02/05/2019
+                  AWN_numero_de_serie: U2588958
+                  AWN_nbr_cylindres: "4"
+                  AWN_nbr_cylindre_energie: "1332"
+                  AWN_collection: NON
+                  AWN_puissance_KW: "103"
+                  AWN_code_moteur: HR13DDT
+                  AWN_nbr_de_places: "5"
+                  AWN_nbr_soupapes: "0"
+                  AWN_nbr_volume: "0"
+                  AWN_nbr_portes: "0"
+                  AWN_nbr_vitesses: "0"
+                  AWN_type_boite_vites: INCONNUE
+                  AWN_consommation_urbaine: "0.0"
+                  AWN_consommation_ex_urbaine: "0.0"
+                  AWN_consommation_mixte: "0.0"
+                  AWN_mode_injection: "INJECTION DANS LE COLLECTEUR D'ADMISSION, INJECTION\
+                    \ DIRECTE"
+                  AWN_prix: "0"
+                  AWN_propulsion: Traction avant
+                  AWN_libelle: "QASHQAI II SUV (J11, J11_)"
+                  AWN_TID: "135591"
+                  AWN_modele_id: "65087"
+                  AWN_marque_id: "1194"
+                  AWN_annee_de_debut_modele: "201808"
+                  AWN_annee_de_fin_modele: "999999"
+                  AWN_brand_img_path: /autoways/public/storage/brands/nissan.png
+                  country: pt
+                  AWN_brand_img_full_path: https://app.auto-ways.net/autoways/public/storage/brands/nissan.png
+                  AWN_country: pt
+                  AWN_output_lang: fr
+        "301":
+          description: Cross-Origin Resource Sharing (CORS)
+        "401":
+          description: Unauthorized client
+        "404":
+          description: Car not found
+components:
+  schemas: {}
